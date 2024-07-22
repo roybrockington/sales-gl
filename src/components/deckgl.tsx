@@ -1,30 +1,46 @@
-import {Loader} from '@googlemaps/js-api-loader';
-import {GoogleMapsOverlay} from '@deck.gl/google-maps';
-import {ScatterplotLayer} from '@deck.gl/layers';
+import {useMemo, useEffect} from 'react'
+import {APIProvider, Map, useMap} from '@vis.gl/react-google-maps'
+import {DeckProps} from '@deck.gl/core'
+import {ScatterplotLayer} from '@deck.gl/layers'
+import {GoogleMapsOverlay} from '@deck.gl/google-maps'
 
-const loader = new Loader({apiKey: process.env.GMAPS});
-const googlemaps = await loader.importLibrary('maps');
+function DeckGLOverlay(props: DeckProps) {
+    const map = useMap()
+    const overlay = useMemo(() => new GoogleMapsOverlay(props))
 
-const map = new googlemaps.Map(document.getElementById('map'), {
-  center: {lat: 51.47, lng: 0.45},
-  zoom: 11,
-  mapId: '<google_map_id>'
-});
+    useEffect(() => {
+        overlay.setMap(map);
+        return () => overlay.setMap(null);
+    }, [map])
 
-const overlay = new GoogleMapsOverlay({
-  layers: [
-    new ScatterplotLayer({
-      id: 'deckgl-circle',
-      data: [
-        {position: [0.45, 51.47]}
-      ],
-      getPosition: d => d.position,
-      getFillColor: [255, 0, 0, 100],
-      getRadius: 1000
-    })
-  ]
-});
+    overlay.setProps(props);
+    return null;
+}
 
-overlay.setMap(map);
+const Deck = () => {
+    let API_KEY = import.meta.env.VITE_REACT_API_GMAPS
+    let MAP_ID = '7f459e2f2195760'
 
+    const layers = [
+        new ScatterplotLayer({
+            id: 'deckgl-circle',
+            data: [
+                {position: [0.45, 51.47]}
+            ],
+            getPosition: d => d.position,
+            getFillColor: [255, 0, 0, 100],
+            getRadius: 1000
+        })
+    ];
 
+    return <APIProvider apiKey={API_KEY}>
+        <Map
+            defaultCenter={{lat: 51.47, lng: 0.45}}
+            defaultZoom={11}
+            mapId={MAP_ID}>
+            <DeckGLOverlay layers={layers} />
+        </Map>
+    </APIProvider>
+}
+
+export default Deck
