@@ -1,8 +1,8 @@
 import {useMemo, useEffect} from 'react'
 import {APIProvider, Map, useMap} from '@vis.gl/react-google-maps'
 import {DeckProps} from '@deck.gl/core'
-import {ScatterplotLayer} from '@deck.gl/layers'
 import {GoogleMapsOverlay} from '@deck.gl/google-maps'
+import Scatter from './Scatter'
 
 function DeckGLOverlay(props: DeckProps) {
     const map = useMap()
@@ -17,35 +17,19 @@ function DeckGLOverlay(props: DeckProps) {
     return null;
 }
 
-type Sales = {
-    id: string
-    company: string
-    value: number
-    longitude: number
-    latitude: number
-}
 
-
-const Deck = ({data}: Sales[]) => {
+const Deck = () => {
     let API_KEY = import.meta.env.VITE_REACT_API_GMAPS
     let MAP_ID = '7f459e2f2195760'
 
     const layers = [
-        new ScatterplotLayer({
-            id: 'deckgl-circle',
-            data: [
-                {position: [0.45, 51.47]}
-            ],
-            getPosition: d => d.position,
-            getFillColor: [255, 0, 0, 100],
-            getRadius: 1000
-        })
+        Scatter()
     ];
 
     return <APIProvider apiKey={API_KEY}>
         <Map
             defaultCenter={{lat: 51.47, lng: 0.45}}
-            defaultZoom={11}
+            defaultZoom={5}
             mapId={MAP_ID}
         >
             <DeckGLOverlay layers={layers} />
