@@ -17,7 +17,16 @@ function DeckGLOverlay(props: DeckProps) {
     return null;
 }
 
-const Deck = () => {
+type Sales = {
+    id: string
+    company: string
+    value: number
+    longitude: number
+    latitude: number
+}
+
+
+const Deck = ({data}: Sales[]) => {
     let API_KEY = import.meta.env.VITE_REACT_API_GMAPS
     let MAP_ID = '7f459e2f2195760'
 
