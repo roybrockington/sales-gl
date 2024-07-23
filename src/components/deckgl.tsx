@@ -37,7 +37,8 @@ const Deck = () => {
         <Map
             defaultCenter={{lat: 51.47, lng: 0.45}}
             defaultZoom={11}
-            mapId={MAP_ID}>
+            mapId={MAP_ID}
+        >
             <DeckGLOverlay layers={layers} />
         </Map>
     </APIProvider>
