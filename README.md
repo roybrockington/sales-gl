@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# Sales-GL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plot retail sales statistics geographically using React, TypeScript and DeckGL.
 
-Currently, two official plugins are available:
+After cloning this repo:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Run `npm install`
+- Create a blank *.env* file in the root directory
+- Add variable `VITE_REACT_API_GMAPS` for a Google Maps JS API key
 
-## Expanding the ESLint configuration
+## Loading Data
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+- Replace the example file `src/assets/sales.example.json` with a sales array in the following format:
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+[
+    {
+        "id": "DEA01", // generic lookup code or tag
+        "company": "DEALER ONE PLC",
+        "value": 68215.23, // sales figure
+        "latitude": 51.5043,
+        "longitude": -0.0829
+    }
+]
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

@@ -1,13 +1,12 @@
 import {useMemo, useEffect} from 'react'
 import {APIProvider, Map, useMap} from '@vis.gl/react-google-maps'
-import {DeckProps} from '@deck.gl/core'
+import {DeckProps, PickingInfo} from '@deck.gl/core'
 import {GoogleMapsOverlay} from '@deck.gl/google-maps'
 import { Hexagon } from './Scatter'
 
 const DeckGLOverlay = (props: DeckProps) => {
     const map = useMap()
     const overlay = useMemo(() => new GoogleMapsOverlay(props), [])
-
     useEffect(() => {
         overlay.setMap(map);
         return () => overlay.setMap(null);
@@ -35,7 +34,7 @@ const Deck = () => {
             <DeckGLOverlay 
                 layers={layers} 
                 controller
-                getTooltip={({object}) => object && `Sales: ${object.elevationValue}`}
+                getTooltip={({object}: PickingInfo) => object && `Company: ${object.points[0].source.company}\n Sales: ${object.elevationValue}`}
             />
         </Map>
     </APIProvider>
