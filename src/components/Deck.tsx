@@ -2,11 +2,11 @@ import {useMemo, useEffect} from 'react'
 import {APIProvider, Map, useMap} from '@vis.gl/react-google-maps'
 import {DeckProps} from '@deck.gl/core'
 import {GoogleMapsOverlay} from '@deck.gl/google-maps'
-import Scatter from './Scatter'
+import { Hexagon } from './Scatter'
 
-function DeckGLOverlay(props: DeckProps) {
+const DeckGLOverlay = (props: DeckProps) => {
     const map = useMap()
-    const overlay = useMemo(() => new GoogleMapsOverlay(props))
+    const overlay = useMemo(() => new GoogleMapsOverlay(props), [])
 
     useEffect(() => {
         overlay.setMap(map);
@@ -23,7 +23,7 @@ const Deck = () => {
     let MAP_ID = '7f459e2f2195760'
 
     const layers = [
-        Scatter()
+        Hexagon()
     ];
 
     return <APIProvider apiKey={API_KEY}>
@@ -32,7 +32,11 @@ const Deck = () => {
             defaultZoom={5}
             mapId={MAP_ID}
         >
-            <DeckGLOverlay layers={layers} />
+            <DeckGLOverlay 
+                layers={layers} 
+                controller
+                getTooltip={({object}) => object && `Sales: ${object.elevationValue}`}
+            />
         </Map>
     </APIProvider>
 }
