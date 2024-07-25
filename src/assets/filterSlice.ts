@@ -5,9 +5,9 @@ interface FilterState {
     filters: number[]
 }
 
-export const getDivisions = salesData.reduce((acc, obj) => {
+export const getDivisions = salesData.reduce<number[]>((acc, obj) => {
     if (!acc.includes(obj.division)) {
-        acc.push(obj.division);
+        acc.push(obj.division)
     }
     return acc
 }, [])

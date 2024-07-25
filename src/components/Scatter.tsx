@@ -10,6 +10,7 @@ type Sale = {
     id: string
     longitude: number
     latitude: number
+    division: number
 }
 
 
