@@ -24,3 +24,5 @@ After cloning this repo:
     }
 ]
 ```
+
+![Example render of Sales-GL data array with Google Maps](https://github.com/roybrockington/sales-gl/blob/main/src/assets/example.png?raw=true)
