@@ -4,14 +4,16 @@
         "company": "DEALER ONE PLC",
         "value": 68215.23,
         "latitude": 51.5043,
-        "longitude": -0.0829
+        "longitude": -0.0829,
+        "division": 1
     },
     {
         "id": "DEA02",
         "company": "DEALER TWO LTD",
         "value": 461466.52,
         "latitude": 51.5809,
-        "longitude": -0.0730
+        "longitude": -0.0730,
+        "division": 2
     }
 ]
 

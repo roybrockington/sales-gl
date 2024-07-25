@@ -20,6 +20,7 @@ After cloning this repo:
         "value": 68215.23, // sales figure
         "latitude": 51.5043,
         "longitude": -0.0829
+        "division": 1 // amend default options in assets/filterSlice
     }
 ]
 ```
