@@ -28,13 +28,13 @@ const Deck = () => {
     return <APIProvider apiKey={API_KEY}>
         <Map
             defaultCenter={{lat: 51.47, lng: 0.45}}
-            defaultZoom={5}
+            defaultZoom={7}
             mapId={MAP_ID}
         >
             <DeckGLOverlay 
                 layers={layers} 
                 controller
-                getTooltip={({object}: PickingInfo) => object && `Company: ${object.points[0].source.company}\n Sales: ${object.elevationValue}`}
+                getTooltip={({object}: PickingInfo) => object && `Company: ${object.points[0].source.company}\n Sales: ${object.elevationValue}\n Division: ${object.points[0].source.division}`}
             />
         </Map>
     </APIProvider>

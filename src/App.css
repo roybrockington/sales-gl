@@ -5,4 +5,23 @@
     padding: 0;
 }
 
+.header {
+    position: absolute;
+    top: 1%;
+    left: 30%;
+    z-index: 999;
+    background-color: #000;
+    opacity: 0.9;
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 10px;
+}
 
+.filters {
+    display: flex;
+    flex-direction: row;
+    gap: 0px 20px;
+}

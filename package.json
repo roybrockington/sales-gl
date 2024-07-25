@@ -16,9 +16,11 @@
     "@deck.gl/google-maps": "^9.0.24",
     "@deck.gl/layers": "^9.0.24",
     "@deck.gl/react": "^9.0.24",
+    "@reduxjs/toolkit": "^2.2.6",
     "@vis.gl/react-google-maps": "^1.1.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
