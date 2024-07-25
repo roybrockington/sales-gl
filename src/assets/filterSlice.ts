@@ -1,11 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import salesData from '../assets/sales.json'
 
 interface FilterState {
     filters: number[]
 }
 
+export const getDivisions = salesData.reduce((acc, obj) => {
+    if (!acc.includes(obj.division)) {
+        acc.push(obj.division);
+    }
+    return acc
+}, [])
+
+
 const initialState: FilterState = {
-    filters: [1,2]
+    filters: getDivisions
 }
 
 export const filterSlice = createSlice({

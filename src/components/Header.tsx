@@ -1,15 +1,25 @@
 import { useSelector, useDispatch } from "react-redux"
 import { amend } from "../assets/filterSlice"
 import { AppDispatch, RootState } from "../assets/store"
+import { getDivisions } from "../assets/filterSlice"
+
+type FilterDisplay = {
+    id: number
+    name: string
+}
 
 const Header = () => {
     const filters = useSelector((state: RootState) => state.filter.filters)
     const dispatch = useDispatch<AppDispatch>()
 
-    const filterList = [
-        {'id':1, 'name':'Division 1'},
-        {'id':2, 'name':'Division 2'},
-    ]
+    const filterList: FilterDisplay[] = []
+
+    getDivisions.map((division) =>
+        filterList.push({
+            'id':division,
+            'name':`Division ${division}`
+        }
+        ))
 
     return (
         <div className='header'>
